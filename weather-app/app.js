@@ -1,6 +1,7 @@
 const request = require('request')
+const geocode = require('./utils/geocode')
 
-// const url = 'http://api.weatherstack.com/current?access_key=acb0687a72f5894a0a62cdbb2d75eb4a&query=&units=f'
+// const url = 'http://api.weatherstack.com/current?access_key=acb0687a72f5894a0a62cdbb2d75eb4a&query=40.7831,-73.9712&units=f'
 
 // request({ url: url, json: true}, (error, response) => {
 //     if (error) {
@@ -12,17 +13,8 @@ const request = require('request')
 //     }
 // })
 
-const geocodeURL = 'http://api.positionstack.com/v1/forward?access_key=424f83dea0dc3f1072dcad218503cbcc&query=Tehran&limit=1'
 
-request({ url: geocodeURL, json: true}, (error, response) => {
-    if (error) {
-        console.log('Unable to connect to the geocoding service!');
-    } else if (response.body.data.length === 0) {
-        console.log('unable to find location. Try another search!');
-    } else {
-        const latitude = response.body.data[0].latitude
-        const longitude = response.body.data[0].longitude
-        console.log(latitude, longitude);
-    }
-  
+geocode('Boston', (error, data) => {
+    console.log('Error:', error);
+    console.log('Data: ', data);
 })
