@@ -19,7 +19,7 @@ app.use(express.static(publicDirectoryPath))
 
 app.get('', (req, res) => {
     res.render('index', {
-        title: 'weather app',
+        title: 'Weather',
         name: 'Mohsen Pasdar'
     })
 })
@@ -43,6 +43,22 @@ app.get('/weather', (req, res) => {
     res.send({
         forecast: 'It is 15 degrees out',
         location: 'Tehran'
+    })
+})
+
+app.get('/help/*', (req, res) => {
+    res.render('404', {
+        title: '404',
+        name: 'Mohsen Pasdar',
+        errorMessage: 'Help article not Found!'
+    })
+})
+
+app.get('*', (req, res) => {
+    res.render('404', {
+        title: '404',
+        name: 'Mohsen Pasdar', 
+        errorMessage: 'Page not Found!'
     })
 })
 
