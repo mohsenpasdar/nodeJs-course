@@ -6,6 +6,8 @@ const geocode = (address, callback) => {
     request({ url, json: true }, (error, { body } = {}) => {
         if (error) {
             callback('Unable to connect to the geocoding service!', undefined)
+        } else if (body.error) {
+            callback('Query must have at least 3 characters. Try another search!', undefined)
         } else if (body.data.length === 0) {
             callback('Unable to find location. Try another search!', undefined)
         } else {
