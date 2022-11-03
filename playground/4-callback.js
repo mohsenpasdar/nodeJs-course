@@ -1,29 +1,14 @@
-// setTimeout(() => {
-//     console.log('2 seconds are up!');
-// }, 2000);
-
-// const geocode = (address, callback) => {
-//     setTimeout(() => {
-//         const data = {
-//             lotitude: 0,
-//             longitude: 0
-//         }
-
-//         callback(data)
-//     }, 2000);
-// }
-
-// geocode('tehran', (data) => {
-//     console.log(data);
-// })
-
-const add = (a, b, callback) => {
+const doWorkCallback = (callback) => {
     setTimeout(() => {
-        const summation = a + b
-        callback(summation)
+        // callback('this is error', undefined);
+        callback(undefined, [1, 4, 7])
     }, 2000)
 }
 
-add(1, 2, (sum) => {
-    console.log(sum);
+doWorkCallback((error, result) => {
+    if (error) {
+        return console.log(error);
+    }
+
+    console.log(result);
 })
