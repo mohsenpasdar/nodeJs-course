@@ -1,7 +1,6 @@
 // CRUD
 
-const mongodb = require('mongodb')
-const MongoClient = mongodb.MongoClient
+const { MongoClient, ObjectId, ObjectID } = require('mongodb')
 
 const connectionURL = 'mongodb://127.0.0.1:27017'
 const databaseName = 'task-manager'
@@ -13,50 +12,17 @@ MongoClient.connect(connectionURL, { useNewUrlParser: true }, (error, client) =>
 
     const db = client.db(databaseName)
 
-    // db.collection('users').insertOne({
-    //     name: 'Mohsen',
-    //     age: 34
-    // }, (error, result) => {
-    //     if (error) {
-    //         return console.log('Unable to insert user');
+    // db.collection('users').findOne({ _id: new ObjectId('63636a1b2f682511733e4bb6') }).then(data => {
+    //     if (!data) {
+    //         console.log('no data');
+    //     } else {
+    //         console.log(data);
     //     }
-
-    //     console.log(result);
     // })
 
-    // db.collection('users').insertMany([
-    //     {
-    //         name: 'Jen', 
-    //         age: 28
-    //     }, {
-    //         name: 'Zahra', 
-    //         age: 31
-    //     }
-    // ], (error, result) => {
-    //     if (error) {
-    //         return console.log('Unable to insert documents');
-    //     }
+    // db.collection('users').find({ age: 31 }).toArray().then(data => { console.log(data);})
 
-    //     console.log(result.insertedIds);
-    // })
+    db.collection('tasks').findOne({ _id: new ObjectId('636360f8595349f8f98cb0f8')}).then(data => { console.log(data);})
+    db.collection('tasks').find({ completed: false}).toArray().then(data => {console.log(data);})
 
-    db.collection('tasks').insertMany([
-        {
-            description: 'walking',
-            completed: true
-        },
-        {
-            description: 'cooking',
-            completed: false
-        },
-        {
-            description: 'shopping',
-            completed: true
-        }
-    ], (error, result) => {
-        if (error) {
-            return console.log('Unable to insert documents');
-        }
-        console.log(result.insertedIds);
-    })
 })
