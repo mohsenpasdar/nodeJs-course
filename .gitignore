@@ -4,3 +4,4 @@
 /task-manager/node_modules
 /task-manager/config/dev.env
 /task-manager/config/test.env
+/chat-app/node_modules
