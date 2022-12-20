@@ -1,5 +1,16 @@
 const users = []
 
+
+const getRoomsList = () => {
+    const rooms = []
+    users.forEach(user => {
+        if (!rooms.includes(user.room)) {
+            rooms.push(user.room)
+        }
+    })
+    return rooms
+}
+
 const addUser = ({id, username, room}) => {
     // clean the data
     username = username.trim().toLowerCase()
@@ -44,5 +55,5 @@ const getUsersInRoom = (room) => {
 }
 
 module.exports = {
-    addUser, removeUser, getUser, getUsersInRoom
+    getRoomsList, addUser, removeUser, getUser, getUsersInRoom
 }
