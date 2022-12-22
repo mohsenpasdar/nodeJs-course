@@ -2,13 +2,18 @@ const users = []
 
 
 const getRoomsList = () => {
-    const rooms = []
+    const roomsObject = []
+    const roomsArray = []
     users.forEach(user => {
-        if (!rooms.includes(user.room)) {
-            rooms.push(user.room)
+        if (!roomsArray.includes(user.room)) {
+            roomsObject.push({
+                roomId: user.room
+            })
+
+            roomsArray.push(user.room)
         }
     })
-    return rooms
+    return roomsObject
 }
 
 const addUser = ({id, username, room}) => {
